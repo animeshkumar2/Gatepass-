@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location</title>
+    <style type="text/css">
+          #logo
+        {
+            width: 300px;
+            height: 150px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: .7;
+            position: relative;
+            top: -500px;
+        }
+        body
+        {
+            background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url(static/register/images/bg.jpg);
+            height : 100vh;
+            background-size: cover;
+            background-position: center;
+        }
+        .login
+        {
+            width: 600px;
+            margin: auto;
+            padding: 10% 0 0 0;
+            margin-top: 10%;
+        }
+        .form
+        {
+            position: relative;
+            z-index: 1;
+            max-width: 100%;
+            padding: 45px;
+            margin: 0 auto 100px;
+            text-align: center;
+            opacity: 0.9;
+            background : rgba(97,106,107,.4);
+            
+        }
+        .form input
+        {
+            font-family: "Roboto",sans-serif;
+            outline: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 15px;
+            margin: 0 0 10px;
+            font-size: 16px;
+            border-radius: 8%;
+            background-color: white;
+        }
+        .text
+        {
+            font-family: "Roboto",sans-serif;
+            color: white;
+            font-size: 14px;
+        }
+        .opt
+        {
+            font-family: "Roboto",sans-serif;
+            outline: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 15px;
+            margin: 0 0 10px;
+            font-size: 16px;
+            border-radius: 8%;
+            background-color: white;  
+        }
+        .form button
+        {
+            font-family: "Roboto",sans-serif;
+            cursor: pointer;
+            width: 90%;
+            background-color: #4CAF50;
+            padding: 15px;
+            border: 0;
+            color: white;
+            font-size: 16px;
+        }
+        .form button:hover{
+            background-color: #58D68D;
+        }
+
+      
+    </style>
+    
+</head>
+<body>
+    <div class="login">
+        <div class="form">
+            <form action="/gatepass" method="POST">
+                {% csrf_token %}
+                <select class="opt" name="courier">
+                    <p>
+                        <option disabled selected>Select Your Courier Service:</option>
+                        <option>Xpressway Logistics</option>
+                        <option>DTDC Logistics</option>
+                        <option>E Cart Courier Services</option>
+                    </p>
+                </select><br>
+                <button>Finish</button><br>
+            </form>
+        </div>
+    </div>
+<img src="static/register/images/logo.png" id="logo">
+ 
+</body>
+</html>

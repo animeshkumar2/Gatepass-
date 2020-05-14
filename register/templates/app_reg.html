@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTER/LOGIN</title>
+    <style type="text/css">
+          #logo
+          {
+            width: 300px;
+            height: 150px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: .7;
+            position: relative;
+            top: -700px;
+            
+        }
+        body
+        {
+            background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('static/register/images/bg.jpg');
+            height : 100vh;
+            background-size: cover;
+            background-position: center;
+        }
+        .login
+        {
+            width: 360px;
+            margin: auto;
+            padding: 10% 0 0 0;
+            margin-top: 10%;
+        }
+        .form
+        {
+            position: relative;
+            z-index: 1;
+            max-width: 360px;
+            padding: 45px;
+            margin: 0 auto 100px;
+            text-align: center;
+            opacity: 0.9;
+            background : rgba(97,106,107,.4); 
+            
+        }
+        .form input
+        {
+            font-family: "Roboto",sans-serif;
+            outline: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 15px;
+            margin: 0 0 10px;
+            font-size: 16px;
+            border-radius: 8%;
+            background-color: white;
+        }
+        .green
+        {
+            font-family: "Roboto",sans-serif;
+            cursor: pointer;
+            width: 90%;
+            background-color: #4CAF50;
+            padding: 15px;
+            border: 0;
+            color: white;
+            font-size: 16px;
+        }
+        .green:hover{
+            background-color: #58D68D;
+        }
+        .text
+        {
+            font-family: "Roboto",sans-serif;
+            color: white;
+            font-size: 14px;
+        }
+        .link
+        {
+            font-family: "Roboto",sans-serif;
+            color: lightgreen;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        .solid
+        {
+            font-family: "Roboto",sans-serif;
+            cursor: pointer;
+            width: 90%;
+            background-color: rgb(38, 70, 177);
+            padding: 15px;
+            border: 0;
+            color: white;
+            font-size: 16px;
+        }
+        .solid:hover{
+            background-color: rgb(110, 121, 214);
+        }
+        .link:hover{
+            color: rgb(99, 214, 230);
+        }
+      
+    </style>
+    
+</head>
+<body>
+    <div class="login">
+        <div class="form">
+            <form action="/app_log" method="POST">
+                {% csrf_token %}
+                {% for i in apr %}
+                    <input type="text" name="pno" hidden value={{i.pers_number}}>     
+                    <input type="text" value={{i.approver_name}} name="app_name">           
+                    <input type="email" name="email" placeholder="Email ID">
+                    <input type="password" name="password" placeholder="Password">
+                {% endfor %}
+                <button class="solid">REGISTER</button><br>
+                <p class="text">Already Registered?<br><br><a href="/app_login" class="link">LOGIN</a></p>
+            </form>
+        </div>
+    </div>
+<img src="/static/register/images/logo.png" id="logo">
+ 
+</body>
+</html>

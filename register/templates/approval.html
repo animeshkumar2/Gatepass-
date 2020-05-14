@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location</title>
+    <style type="text/css">
+          #logo
+        {
+            width: 300px;
+            height: 150px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: .7;
+            position: relative;
+            top: -650px;
+        }
+        body
+        {
+            background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url(static/register/images/bg.jpg);
+            height : 100vh;
+            background-size: cover;
+            background-position: center;
+        }
+        .login
+        {
+            width: 600px;
+            margin: auto;
+            padding: 10% 0 0 0;
+            margin-top: 10%;
+        }
+        .form
+        {
+            position: relative;
+            z-index: 1;
+            max-width: 100%;
+            padding: 45px;
+            margin: 0 auto 100px;
+            text-align: center;
+            opacity: 0.9;
+            background : rgba(97,106,107,.4);
+            
+        }
+        .form input
+        {
+            font-family: "Roboto",sans-serif;
+            outline: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 15px;
+            margin: 0 0 10px;
+            font-size: 16px;
+            border-radius: 8%;
+            background-color: white;
+        }
+        .text
+        {
+            font-family: "Roboto",sans-serif;
+            color: white;
+            font-size: 14px;
+        }
+        .opt
+        {
+            font-family: "Roboto",sans-serif;
+            outline: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 15px;
+            margin: 0 0 10px;
+            font-size: 16px;
+            border-radius: 8%;
+            background-color: white;  
+        }
+        .form button
+        {
+            font-family: "Roboto",sans-serif;
+            cursor: pointer;
+            width: 90%;
+            background-color: #4CAF50;
+            padding: 15px;
+            border: 0;
+            color: white;
+            font-size: 16px;
+        }
+        .form button:hover{
+            background-color: #58D68D;
+        }
+
+      
+    </style>
+    
+</head>
+<body>
+    <div class="login">
+        <div class="form">
+            <form action="/new" method="POST">
+                {% csrf_token %}
+                <input type="hidden" value="{{ source }}" name="source">
+                <input type="hidden" value="{{ dest }}" name="dest">
+                <select class="opt" name="app">
+                    <p>
+                        <option disabled selected>Select Your Approver:</option>
+                        {% for i in appr %}
+                            <option>{{i.approver_name}}</option>
+                        {% endfor %}
+                    </p>
+                </select><br>
+                <select id="mat" class="opt" name="mat">
+                    <p>
+                        <option disabled selected>Select Your Material:</option>
+                        {% for i in mat %}
+                            <option value="{{ i.m_material_id }}" data-max="{{ i.m_quantity_available }}">{{i.m_material_name}}
+                               ( Available Quantity : {{i.m_quantity_available}} {{i.m_unit_ofmeasure}} )
+                            </option>
+                        {% endfor %}
+                    </p>
+                </select><br>
+                <input id="quant" type="number" name="quant" placeholder="Enter Quantity you want">
+                <select class="opt" name="selection">
+                    <p>
+                        <option disabled selected>Transportation through::</option>
+                        <option>Employee</option>
+                        <option>Courier</option>
+
+                    </p>
+                </select><br>
+                <button>Next</button><br>
+            </form>
+        </div>
+    </div>
+<img src="static/register/images/logo.png" id="logo">
+ <script>
+     var matInput = document.getElementById('mat');
+     var numInput = document.getElementById('quant');
+     matInput.addEventListener('change', function (event) {
+         var selectTag = event.target;
+         var options = selectTag.selectedOptions;
+         if(options && options.length > 0) {
+             var option = options[0];
+             var max = option.getAttribute('data-max');
+             numInput.setAttribute('max', max);
+         }
+     })
+ </script>
+</body>
+</html>
